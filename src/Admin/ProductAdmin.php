@@ -20,6 +20,7 @@ class ProductAdmin extends AbstractAdmin
     {
         $list
             ->addIdentifier('name')
+            ->add('categories')
             ->addIdentifier('description')
             ->add('price')
             ->add('count')
@@ -30,6 +31,7 @@ class ProductAdmin extends AbstractAdmin
     {
         $filter
             ->add('name')
+            ->add('categories')
             ->add('description')
             ->add('price')
             ->add('count')
@@ -40,6 +42,7 @@ class ProductAdmin extends AbstractAdmin
     {
         $form
             ->add('name')
+            ->add('categories')
             ->add('description')
             ->add('price')
             ->add('count')
