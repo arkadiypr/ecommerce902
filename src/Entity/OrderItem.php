@@ -17,6 +17,12 @@ class OrderItem
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="orderItems")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $order;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orderItems")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -86,6 +92,18 @@ class OrderItem
     public function setAmount(int $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getOrder(): ?Order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(?Order $order): self
+    {
+        $this->order = $order;
 
         return $this;
     }
