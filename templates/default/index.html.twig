@@ -15,7 +15,7 @@
                         </h5>
                         <p class="card-text">{{ product.price / 100 }}</p>
                         <p class="card-text">{{ product.description }}</p>
-                        <a href="#" class="btn btn-primary">В корзину</a>
+                        <a href="{{ path('order_add_to_cart', {'id': product.id}) }}" class="btn btn-primary">В корзину</a>
                     </div>
                 </div>
             </div>

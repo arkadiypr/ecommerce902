@@ -17,6 +17,7 @@ class OrderItem
     private $id;
 
     /**
+     * @var Order
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="orderItems")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -56,6 +57,7 @@ class OrderItem
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+        $this->setPrice($product->getPrice());
 
         return $this;
     }
@@ -68,6 +70,7 @@ class OrderItem
     public function setCount(int $count): self
     {
         $this->count = $count;
+        $this->updateAmount();
 
         return $this;
     }
@@ -80,6 +83,7 @@ class OrderItem
     public function setPrice(int $price): self
     {
         $this->price = $price;
+        $this->updateAmount();
 
         return $this;
     }
@@ -106,5 +110,14 @@ class OrderItem
         $this->order = $order;
 
         return $this;
+    }
+
+    private function updateAmount()
+    {
+        $this->amount = $this->price * $this->count;
+
+        if ($this->order) {
+            $this->order->updateAmount();
+        }
     }
 }

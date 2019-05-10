@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Table("`order`")
  */
 class Order
 {
@@ -45,6 +46,7 @@ class Order
     private $user;
 
     /**
+     * @var OrderItem[]
      * @ORM\Column(type="integer")
      */
     private $amount;
@@ -56,7 +58,7 @@ class Order
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->createAt = new \DateTime();
         $this->status = self::STATUS_NEW;
         $this->isPaid = false;
         $this->amount = 0;
@@ -144,6 +146,8 @@ class Order
             $orderItem->setOrder($this);
         }
 
+        $this->updateAmount();
+
         return $this;
     }
 
@@ -157,6 +161,20 @@ class Order
             }
         }
 
+        $this->updateAmount();
+
         return $this;
+    }
+
+    public function updateAmount()
+    {
+        $amount = 0;
+
+        foreach ($this->orderItems as $item) {
+            $amount += $item->getAmount();
+        }
+
+        $this->setAmount($amount);
+
     }
 }
