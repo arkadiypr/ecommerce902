@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block body %}
+    <h1>Корзина</h1>
+    <table>
+        <tr>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Стоимость</th>
+        </tr>
+
+        {% for item in cart.orderItems %}
+            <tr>
+                <td>{{ item }}</td>
+                {#<td>{{  }}</td>#}
+                {#<td>{{  }}</td>#}
+                {#<td>{{  }}</td>#}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+

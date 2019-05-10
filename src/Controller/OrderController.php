@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Service\OrderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,5 +20,15 @@ class OrderController extends AbstractController
         $referer = $request->headers->get('Referer');
 
         return $this->redirect($referer);
+    }
+
+    /**
+     * @Route("/order/cart", name="order_cart")
+     */
+    public function cart(OrderService $orderService)
+    {
+        return $this->render('order/cart.html.twig', [
+            'cart' => $orderService->getOrderFromCart(),
+        ]);
     }
 }
