@@ -43,7 +43,8 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="{{ path('order_cart') }}" class="nav-link">
-                        <span id="header-cart"><i class="fas fa-shopping-cart"></i>{{ render(controller('\\App\\Controller\\OrderController::headerCart')) }}</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="header-cart">{{ render(controller('\\App\\Controller\\OrderController::headerCart')) }}</span>
                     </a>
                 </li>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
