@@ -6,7 +6,7 @@
                 <h5 class="card-title">
                     <a href="{{ path('product', {'id': product.id}) }}">{{ product.name }}</a>
                 </h5>
-                <p class="card-text">{{ product.price / 100 }}</p>
+                <p class="card-text">{{ product.price|money }}</p>
                 <p class="card-text">{{ product.description }}</p>
                 <a href="{{ path('order_add_to_cart', {'id': product.id}) }}" class="btn btn-primary js-add-to-cart">В корзину</a>
             </div>

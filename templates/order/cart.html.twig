@@ -16,14 +16,14 @@
             <tr>
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.count }}</td>
-                <td>{{ item.price / 100 }}</td>
-                <td>{{ item.amount / 100 }}</td>
+                <td>{{ item.price|money }}</td>
+                <td>{{ item.amount|money }}</td>
             </tr>
         {% endfor %}
 
         <tr>
             <td colspan="3">Всего</td>
-            <td>{{ order.amount / 100 }}</td>
+            <td>{{ order.amount|money }}</td>
         </tr>
     </table>
 {% endblock %}
