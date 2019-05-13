@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}E-shop{% endblock %}
 
 {% block body %}
     <h1>Товары</h1>
@@ -15,7 +15,7 @@
                         </h5>
                         <p class="card-text">{{ product.price / 100 }}</p>
                         <p class="card-text">{{ product.description }}</p>
-                        <a href="{{ path('order_add_to_cart', {'id': product.id}) }}" class="btn btn-primary">В корзину</a>
+                        <a href="{{ path('order_add_to_cart', {'id': product.id}) }}" class="btn btn-primary js-add-to-cart">В корзину</a>
                     </div>
                 </div>
             </div>
