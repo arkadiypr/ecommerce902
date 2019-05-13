@@ -4,23 +4,31 @@
 
 {% block body %}
     <h1>Корзина</h1>
-    <table>
+
+    <table class="table table-striped">
         <tr>
             <th>Товар</th>
-            <th>Цена</th>
             <th>Количество</th>
+            <th>Цена</th>
             <th>Стоимость</th>
         </tr>
-
-        {% for item in cart.orderItems %}
+        {% for item in order.orderItems %}
             <tr>
-                <td>{{ item }}</td>
-                {#<td>{{  }}</td>#}
-                {#<td>{{  }}</td>#}
-                {#<td>{{  }}</td>#}
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.count }}</td>
+                <td>{{ item.price / 100 }}</td>
+                <td>{{ item.amount / 100 }}</td>
             </tr>
         {% endfor %}
+
+        <tr>
+            <td colspan="3">Всего</td>
+            <td>{{ order.amount / 100 }}</td>
+        </tr>
     </table>
 {% endblock %}
+
+
+
 
 
