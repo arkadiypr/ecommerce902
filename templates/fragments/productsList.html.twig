@@ -1,7 +1,11 @@
 {% for product in products %}
     <div class="col-md-6 col-lg-3">
         <div class="card">
-            <img src="//placehold.it/200x150" class="card-img-top" alt="...">
+            {% if product.image and vich_uploader_asset(product, 'image') %}
+            <img src="{{ vich_uploader_asset(product, 'image') }}" class="card-img-top" alt="...">
+            {% else %}
+                <img src="//placehold.it/200x150" class="card-img-top" alt="...">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="{{ path('product', {'id': product.id}) }}">{{ product.name }}</a>
