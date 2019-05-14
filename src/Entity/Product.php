@@ -58,7 +58,7 @@ class Product
 
     /**
      * @var File
-     * @Vich\UploadableField(mapping="products", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="products", fileNameProperty="imageName", originalName="imageOriginalName")
      */
     private $image;
 
@@ -71,6 +71,11 @@ class Product
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageOriginalName;
 
     public function __construct()
     {
@@ -247,6 +252,18 @@ class Product
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getImageOriginalName(): ?string
+    {
+        return $this->imageOriginalName;
+    }
+
+    public function setImageOriginalName(?string $imageOriginalName): self
+    {
+        $this->imageOriginalName = $imageOriginalName;
 
         return $this;
     }
