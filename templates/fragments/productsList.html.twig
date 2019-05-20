@@ -2,7 +2,7 @@
     <div class="col-md-6 col-lg-3">
         <div class="card">
             {% if product.image and vich_uploader_asset(product, 'image') %}
-            <img src="{{ vich_uploader_asset(product, 'image') }}" class="card-img-top" alt="...">
+            <img src="{{ vich_uploader_asset(product, 'image') | imagine_filter('product_thumb') }}" class="card-img-top" alt="...">
             {% else %}
                 <img src="//placehold.it/200x150" class="card-img-top" alt="...">
             {% endif %}
