@@ -1,3 +1,5 @@
+const $ = require('jquery');
+
 $('.js-add-to-cart').on('click', function (event) {
     let headerCart = $('#header-cart');
 
@@ -5,7 +7,7 @@ $('.js-add-to-cart').on('click', function (event) {
 
     $.get(this.href, function (data) {
         headerCart.html(data);
-        
+
     });
-    
+
 });
