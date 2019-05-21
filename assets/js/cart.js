@@ -11,3 +11,16 @@ $('.js-add-to-cart').on('click', function (event) {
     });
 
 });
+
+$('body').on('input', '.js-cart-count', function (event) {
+    let $me = $(this);
+
+    $.post(
+        $me.data('href'),
+        {'count': $me.val()},
+        function (data) {
+            $('#cartTable').html(data);
+        }
+    );
+    
+});

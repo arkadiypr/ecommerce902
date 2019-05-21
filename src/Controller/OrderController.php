@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderItem;
 use App\Entity\Product;
 use App\Service\OrderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,5 +43,26 @@ class OrderController extends AbstractController
         return $this->render('order/headerCart.html.twig', [
             'order' => $orderService->getOrderFromCart(),
         ]);
+    }
+
+    /**
+     * @Route("/cart/update-count/{id}", name="order_update_count")
+     */
+    public function updateCount(OrderItem $orderItem, OrderService $orderService, Request $request)
+    {
+        $order = $orderService->getOrderFromCart();
+
+        if ($orderItem->getOrder() !== $order) {
+            return $this->createAccessDeniedException('Invalid order item');
+        }
+
+        $count = $request->request->getInt('count');
+
+        $orderService->setCount($orderItem, $count);
+
+        return $this->render('order/cartTable.html.twig', [
+            'order' => $order,
+        ]);
+
     }
 }
