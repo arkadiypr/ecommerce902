@@ -1,19 +1,20 @@
 const $ = require('jquery');
 
-let headerCart = $('#header-cart');
+let $headerCart = $('#header-cart');
+let $body = $('body');
 
 $('.js-add-to-cart').on('click', function (event) {
 
     event.preventDefault();
 
     $.get(this.href, function (data) {
-        headerCart.html(data);
+        $headerCart.html(data);
 
     });
 
 });
 
-$('body').on('input', '.js-cart-count', function (event) {
+$body.on('input', '.js-cart-count', function (event) {
     let $me = $(this);
 
     $.post(
@@ -22,7 +23,7 @@ $('body').on('input', '.js-cart-count', function (event) {
     
 });
 
-$('body').on('click', '.js-cart-delete', function (event) {
+$body.on('click', '.js-cart-delete', function (event) {
     event.preventDefault();
 
     if (confirm('Вы действительно хотите удалить товар из корзины?')) {
@@ -34,5 +35,5 @@ $('body').on('click', '.js-cart-delete', function (event) {
 function updateCart(data) {
     $('#cartTable').html(data);
     let amount = $('#orderAmount').html();
-    headerCart.html(amount);
+    $headerCart.html(amount);
 }
