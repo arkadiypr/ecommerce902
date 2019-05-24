@@ -4,6 +4,7 @@
         <th>Количество</th>
         <th>Цена</th>
         <th>Стоимость</th>
+        <th></th>
     </tr>
     {% for item in order.orderItems %}
         <tr>
@@ -13,12 +14,17 @@
             </td>
             <td>{{ item.price|money }}</td>
             <td>{{ item.amount|money }}</td>
+            <td><a href="{{ path('order_delete_item', {'id': item.id}) }}" class="js-cart-delete">
+                    <i class="fas fa-minus-circle"></i>
+                </a>
+            </td>
         </tr>
     {% endfor %}
 
     <tr>
         <td colspan="3">Всего</td>
-        <td>{{ order.amount|money }}</td>
+        <td id="orderAmount">{{ order.amount|money }}</td>
+        <td></td>
     </tr>
 </table>
 
