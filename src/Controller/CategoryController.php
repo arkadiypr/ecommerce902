@@ -35,4 +35,11 @@ class CategoryController extends AbstractController
             'category' => $category
         ]);
     }
+
+    public function headerCategories(CategoryRepository $categoryRepository)
+    {
+        return $this->render('category/header.html.twig',[
+            'categories' => $categoryRepository->findBy([], ['name' => 'ASC'])
+        ]);
+    }
 }
